@@ -14,9 +14,20 @@ function TodoMain() {
     // console.log(taskInput);
     setTaskInput(event.target.value)
   }
+
+  const addTaskToArray = () => {
+    setTaskArray((prevTasks) => {
+      return [...prevTasks, taskInput]
+    })
+    setTaskInput("")
+  }
   return (
     <div>
         <input type="text" value={taskInput} placeholder="Enter a task" onChange={onTaskChange}/>
+        <button onClick={addTaskToArray}>Add</button>
+        <ol>{ taskArray.map((val, index) => {
+          return <Task key={index} text={val} />
+        }) }</ol>
     </div>
   )
 }
